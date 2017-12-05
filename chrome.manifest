@@ -1,0 +1,9 @@
+content view-mobile-site chrome/content/
+
+locale view-mobile-site en-US chrome/locale/en-US/
+
+# Firefox
+overlay	chrome://browser/content/browser.xul chrome://view-mobile-site/content/button.xul
+
+# SeaMonkey
+overlay	chrome://navigator/content/navigator.xul chrome://view-mobile-site/content/button.xul
