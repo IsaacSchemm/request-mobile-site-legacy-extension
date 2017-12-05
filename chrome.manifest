@@ -1,3 +1,7 @@
+component {aefc9d5b-c9c0-4f30-bea3-973928603735} components/ViewMobileSite.js
+contract @viewmobilesite/startup;1 {aefc9d5b-c9c0-4f30-bea3-973928603735}
+category profile-after-change ViewMobileSite @viewmobilesite/startup;1
+
 content view-mobile-site chrome/content/
 
 locale view-mobile-site en-US chrome/locale/en-US/
