@@ -82,7 +82,10 @@ ViewMobileSite = {
 					var lastToken = /([^ ]+)$/.exec(navigator.userAgent)[1];
 					// Get Firefox version, if any; otherwise default to 52
 					var fxVersion = /Firefox\/([0-9\.]+)/.exec(navigator.userAgent)[1] || "52.0";
-					var ua = "Mozilla/5.0 (Android; Mobile; rv:" + fxVersion + ") Gecko/" + fxVersion + " Firefox/" + fxVersion + " " + lastToken;
+					var ua = "Mozilla/5.0 (Android; Mobile; rv:" + fxVersion + ") Gecko/" + fxVersion + " Firefox/" + fxVersion;
+					if (lastToken && !/^Firefox\//.test(lastToken)) {
+						ua += " " + lastToken;
+					}
 					try {
 						prefs.setCharPref("override", ua);
 					} catch (e) {
