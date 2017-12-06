@@ -12,7 +12,7 @@ Components.utils.import("resource://gre/modules/Console.jsm");
 // override back on if the extension is going to be uninstalled or disabled.
 AddonManager.addAddonListener({
 	onUninstalling: function(addon) {
-		if (addon.id == "view-mobile-site@lakora.us") {
+		if (addon.id == "request-mobile-site@lakora.us") {
 			Components.classes["@mozilla.org/preferences-service;1"]
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch("general.useragent.")
@@ -20,7 +20,7 @@ AddonManager.addAddonListener({
 		}
 	},
 	onDisabling: function(addon) {
-		if (addon.id == "view-mobile-site@lakora.us") {
+		if (addon.id == "request-mobile-site@lakora.us") {
 			Components.classes["@mozilla.org/preferences-service;1"]
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch("general.useragent.")
@@ -34,10 +34,10 @@ class definition
 ***********************************************************/
 
 //class constructor
-function ViewMobileSite() { }
+function RequestMobileSite() { }
 
 // class definition
-ViewMobileSite.prototype = {
+RequestMobileSite.prototype = {
 
 	// properties required for XPCOM registration:
 	classDescription: "View Mobile Site",
@@ -83,7 +83,7 @@ ViewMobileSite.prototype = {
 	}
 };
 
-var components = [ViewMobileSite];  
+var components = [RequestMobileSite];  
 if (XPCOMUtils.generateNSGetFactory)
 {
 	var NSGetFactory = XPCOMUtils.generateNSGetFactory(components);

@@ -6,11 +6,11 @@
   <Description
     about="urn:mozilla:install-manifest"
 
-    em:name="View Mobile Site"
+    em:name="Request Mobile Site"
     em:description="Adds an item to the Tools menu to switch to a mobile user agent string."
     em:creator="Isaac Schemm"
 
-    em:id="view-mobile-site@lakora.us"
+    em:id="request-mobile-site@lakora.us"
     em:version="1.0.0"
     em:homepageURL="https://github.com/IsaacSchemm/seamonkey-view-mobile-site" >
 

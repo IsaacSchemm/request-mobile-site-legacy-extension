@@ -7,7 +7,7 @@ var observerObj = null;
 
 this.addEventListener("load", function () {
 	prefs = Services.prefs.getBranch("general.useragent.");
-	var menuItem = document.getElementById("viewMobileSiteToolsMenuToggle");
+	var menuItem = document.getElementById("RequestMobileSiteToolsMenuToggle");
 
 	observerObj = {
 		observe: function (aSubject, aTopic, aData) {
@@ -50,11 +50,11 @@ this.addEventListener("unload", function () {
 	prefs.removeObserver("", observerObj);
 });
 
-ViewMobileSite = {
+RequestMobileSite = {
 	GetString: s => {
 		var strings = Components.classes["@mozilla.org/intl/stringbundle;1"]
 			.getService(Components.interfaces.nsIStringBundleService)
-			.createBundle("chrome://view-mobile-site/locale/view-mobile-site.properties");
+			.createBundle("chrome://request-mobile-site/locale/request-mobile-site.properties");
 		try {
 			return strings.GetStringFromName(s);
 		} catch (e) {
@@ -63,13 +63,13 @@ ViewMobileSite = {
 		}
 	},
 	Toggle: () => {
-		var title = ViewMobileSite.GetString("title");
-		AddonManager.getAddonByID("view-mobile-site@lakora.us", addon => {
+		var title = RequestMobileSite.GetString("title");
+		AddonManager.getAddonByID("request-mobile-site@lakora.us", addon => {
 			var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 				.getService(Components.interfaces.nsIPromptService);
 				
 			if (addon.pendingOperations & (AddonManager.PENDING_DISABLE | AddonManager.PENDING_UNINSTALL)) {
-				promptService.alert(this.window, title, ViewMobileSite.GetString("enableOrReinstallRequired"));
+				promptService.alert(this.window, title, RequestMobileSite.GetString("enableOrReinstallRequired"));
 			} else {
 				var actualValue = "";
 				try {
