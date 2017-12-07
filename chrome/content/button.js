@@ -2,19 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var prefs = null;
-var observerObj = null;
-
 this.addEventListener("load", function () {
-	prefs = Services.prefs.getBranch("general.useragent.");
+	RequestMobileSite.prefs = Services.prefs.getBranch("general.useragent.");
 	var menuItem = document.getElementById("RequestMobileSiteToolsMenuToggle");
 
-	observerObj = {
+	RequestMobileSite.observerObj = {
 		observe: function (aSubject, aTopic, aData) {
 			if ("nsPref:changed" == aTopic) {
 				var newValue = "";
 				try {
-					newValue = prefs.getCharPref("override");
+					newValue = RequestMobileSite.prefs.getCharPref("override");
 				} catch (e) { }
 
 				if (newValue) {
@@ -34,11 +31,11 @@ this.addEventListener("load", function () {
 		}
 	};
 	
-	prefs.addObserver("", observerObj, false);
+	RequestMobileSite.prefs.addObserver("", RequestMobileSite.observerObj, false);
 
 	var value = "";
 	try {
-		value = prefs.getCharPref("override");
+		value = RequestMobileSite.prefs.getCharPref("override");
 	} catch (e) { }
 	if (value) {
 		menuItem.setAttribute("checked", true);
@@ -47,7 +44,7 @@ this.addEventListener("load", function () {
 	}
 });
 this.addEventListener("unload", function () {
-	prefs.removeObserver("", observerObj);
+	RequestMobileSite.prefs.removeObserver("", RequestMobileSite.observerObj);
 });
 
 RequestMobileSite = {
@@ -73,10 +70,10 @@ RequestMobileSite = {
 			} else {
 				var actualValue = "";
 				try {
-					actualValue = prefs.getCharPref("override");
+					actualValue = RequestMobileSite.prefs.getCharPref("override");
 				} catch (e) { }
 				if (actualValue) {
-					prefs.clearUserPref("override");
+					RequestMobileSite.prefs.clearUserPref("override");
 				} else {
 					// Get last token of UA string
 					var lastToken = /([^ ]+)$/.exec(navigator.userAgent)[1];
@@ -87,7 +84,7 @@ RequestMobileSite = {
 						ua += " " + lastToken;
 					}
 					try {
-						prefs.setCharPref("override", ua);
+						RequestMobileSite.prefs.setCharPref("override", ua);
 					} catch (e) {
 						if ("console" in window) window.console.log(e);
 					}
